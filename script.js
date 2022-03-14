@@ -31,6 +31,28 @@ const prepareDOMElements = () => {
 const prepareDOMEvents = () => {
 	check.addEventListener('click', checkNumber);
 	again.addEventListener('click', againGame);
+	window.addEventListener('keydown', runKey);
+};
+
+const runKey = e => {
+	if (e.keyCode === 13 || e.keyCode === 32 || e.keyCode === 27) {
+		switch (e.keyCode) {
+			case 13:
+				checkNumber();
+				break;
+			case 27:
+				againGame();
+				break;
+			case 32:
+				checkClear();
+				break;
+			default:
+				break;
+		}
+	}
+};
+const checkClear = () => {
+	guessInput.value = '';
 };
 
 const displayContent = (variable, content) => {
