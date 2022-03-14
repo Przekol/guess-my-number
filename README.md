@@ -11,12 +11,12 @@
 https://przekol.github.io/guess-my-number/
 ## Tech Stack
 
-**Client:** JavaScript
+HTML, CSS, JavaScript
 
 
 
 
-## License
+## Authors
 
-[MIT](https://choosealicense.com/licenses/mit/)
+- Github [Przekol](https://github.com/Przekol)
 
