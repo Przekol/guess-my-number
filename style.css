@@ -75,11 +75,14 @@ h1 {
 	transform: translate(-50%, 50%);
 }
 
-.between {
-	font-size: 0.875rem;
+.instruction {
 	position: absolute;
 	top: 1.25rem;
 	right: 1.25rem;
+	font-size: 0.875rem;
+	text-align: right;
+	line-height: 2;
+	
 }
 
 .again {
@@ -121,6 +124,7 @@ h1 {
 	line-height: 1.6;
 }
 
-.label-score {
+.label-score, .label-highscore {
 	margin-bottom: 1.25rem;
 }
+
