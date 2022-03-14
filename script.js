@@ -30,32 +30,32 @@ const prepareDOMElements = () => {
 
 const prepareDOMEvents = () => {
 	check.addEventListener('click', checkNumber);
-	again.addEventListener('click', againGame);
-	window.addEventListener('keydown', runKey);
+	again.addEventListener('click', playAgain);
+	window.addEventListener('keydown', selectBehavior);
 };
 
-const runKey = e => {
+const selectBehavior = e => {
 	if (e.keyCode === 13 || e.keyCode === 32 || e.keyCode === 27) {
 		switch (e.keyCode) {
 			case 13:
 				checkNumber();
 				break;
 			case 27:
-				againGame();
+				playAgain();
 				break;
 			case 32:
-				checkClear();
+				clearGuessInput();
 				break;
 			default:
 				break;
 		}
 	}
 };
-const checkClear = () => {
+const clearGuessInput = () => {
 	guessInput.value = '';
 };
 
-const displayContent = (variable, content) => {
+const setContent = (variable, content) => {
 	variable.textContent = content;
 };
 
@@ -63,42 +63,42 @@ const checkNumber = () => {
 	guess = Number(guessInput.value);
 
 	if (guess >= 1 && guess <= 20) {
-		checkScore();
+		setResult();
 	} else {
-		displayContent(message, '🔢 Choose a number in between 1 and 20 ! ');
+		setContent(message, '🔢 Choose a number in between 1 and 20 ! ');
 	}
 };
-const againGame = () => {
+const playAgain = () => {
 	secretNumber = Math.trunc(Math.random() * 20 + 1);
 	guessInput.value = '';
 	score = 20;
-	displayContent(number, '?');
-	displayContent(message, 'Start guessing...');
-	displayContent(scoreNumber, score);
+	setContent(number, '?');
+	setContent(message, 'Start guessing...');
+	setContent(scoreNumber, score);
 	body.classList.remove('winner');
 	body.classList.remove('lost');
 };
 
-const checkScore = () => {
+const setResult = () => {
 	if (score > 1) {
-		comparisonNumber();
-		displayContent(scoreNumber, score);
+		checIfInputIsValid();
+		setContent(scoreNumber, score);
 	} else {
-		displayContent(message, '💥 You lost the game! ');
-		displayContent(scoreNumber, 0);
-		displayContent(number, secretNumber);
+		setContent(message, '💥 You lost the game! ');
+		setContent(scoreNumber, 0);
+		setContent(number, secretNumber);
 		body.classList.add('lost');
 	}
 };
 
-const comparisonNumber = () => {
+const checIfInputIsValid = () => {
 	if (guess === secretNumber) {
-		displayContent(message, '🎉 Correct Number!');
-		displayContent(number, secretNumber);
+		setContent(message, '🎉 Correct Number!');
+		setContent(number, secretNumber);
 		body.classList.add('winner');
 		displayHigthScore();
 	} else if (guess !== secretNumber) {
-		displayContent(message, guess > secretNumber ? '📈 Too high!' : '📉 To low!');
+		setContent(message, guess > secretNumber ? '📈 Too high!' : '📉 To low!');
 		score--;
 	}
 };
@@ -106,7 +106,7 @@ const comparisonNumber = () => {
 const displayHigthScore = () => {
 	if (score > hightScore) {
 		hightScore = score;
-		displayContent(highScoreNumber, hightScore);
+		setContent(highScoreNumber, hightScore);
 	}
 };
 
