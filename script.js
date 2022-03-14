@@ -35,15 +35,19 @@ const prepareDOMEvents = () => {
 };
 
 const selectBehavior = e => {
-	if (e.keyCode === 13 || e.keyCode === 32 || e.keyCode === 27) {
-		switch (e.keyCode) {
-			case 13:
+	const enter = 'Enter';
+	const space = ' ';
+	const escape = 'Escape';
+	
+	if (e.key == enter || e.key == space || e.key == escape) {
+		switch (e.key) {
+			case enter:
 				checkNumber();
 				break;
-			case 27:
+			case escape:
 				playAgain();
 				break;
-			case 32:
+			case space:
 				clearGuessInput();
 				break;
 			default:
